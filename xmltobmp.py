@@ -121,7 +121,7 @@ def getFormattedTextAndFont(idraw, text, font_path, font_size, textbox_width, te
 
         bbox = idraw.textbbox(text_coordinates, formatted_text, font=font, anchor=text_anchor)
         text_height = bbox[3] - bbox[1]
-        print(text_height, textbox_height)
+        # print(text_height, textbox_height)
         if text_height > textbox_height:
             font_size -= 1
         else:
@@ -245,8 +245,8 @@ def getGeometryData(geometry, type=''):
     x = int(float(geometry['x'])) if 'x' in geometry else 0
     y = int(float(geometry['y'])) if 'y' in geometry else 0
     if type == 'text':
-        w = int(geometry['width'])
-        h = int(geometry['height'])
+        w = int(float(geometry['width']))
+        h = int(float(geometry['height']))
     else:
         w = int(geometry['width']) + x
         h = int(geometry['height']) + y
@@ -330,7 +330,8 @@ def getLabelText(label):
     else:
         return label
 
-def generateImage(file, specification, price_rub, price_kop, c_price1_rub, c_price1_kop, country, id_, date_price, unit):
+
+def generateImage(file, specification, price_rub, price_kop, c_price1_rub, c_price1_kop, country='', id_='', date_price='', unit=''):
     tree = ElementTree.parse(file)
     root = tree.getroot()
     xmldict = XmlDictConfig(root)
